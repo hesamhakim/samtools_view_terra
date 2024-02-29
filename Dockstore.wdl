@@ -38,7 +38,7 @@ workflow extractRegionWorkflow {
 	File drs_uri_bam_bai
 	File bam_file_name
 	File bed
-	output_path
+	String output_path
 	Int mem_gb
 	}
 	call ExtractBam { 
