@@ -12,12 +12,12 @@ task ExtractBam {
 		Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
 		}
 
-	command {
-		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{output_path}/~{bam_file_name}.chrM.extracted.bam"
-	}
+	command <<<
+		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{drs_uri_bam}/chrM.extracted.bam"
+		>>>
 
 	output {
-		File extractedBam = "~{output_path}/~{bam_file_name}.chrM.extracted.bam"
+		File extractedBam = "~{drs_uri_bam}/chrM.extracted.bam"
 
 	}
 
