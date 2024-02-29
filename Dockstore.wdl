@@ -13,7 +13,7 @@ task ExtractBam {
 		}
 
 	command <<<
-		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{drs_uri_bam}/chrM.extracted.bam"
+		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o chrM.extracted.bam"
 		>>>
 
 	output {
