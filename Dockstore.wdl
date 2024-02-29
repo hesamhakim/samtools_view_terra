@@ -54,9 +54,9 @@ workflow extractRegionWorkflow {
 	 bam_file_name=bam_file_name,
 	 bed=bed,
 	 output_path=output_path,
-	 billing_project=billing_project
-	 workspace=workspace
-	 mem_gb=mem_gb 
+	 billing_project=billing_project,
+	 workspace=workspace,
+	 mem_gb=mem_gb
 	}
 }
 
