@@ -1,56 +1,51 @@
 version 1.0
-task ExtractBam {
+task viewRegion {
     input {
-		File drs_uri_bam
-		File drs_uri_bam_bai
-		File bam_file_name
-		String output_path
-		File bed
-		Int mem_gb
-		Int addtional_disk_size = 200 
-		Int machine_mem_size = 15
-		Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
-		}
+        File bam_or_cram_input
+        File bam_or_cram_index
+        String region
+        Int mem_gb
+        Int addtional_disk_size = 100 
+        Int machine_mem_size = 15
+   		Int disk_size = ceil(size(bam_or_cram_input, "GB")) + addtional_disk_size
 
-		command {
-				bash -c "echo ~{drs_uri_bam}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o chrM.extracted.bam"
-			}
+    }
+
+	command {
+		bash -c "echo ~{bam_or_cram_input}; samtools; samtools view ~{bam_or_cram_input} -X ~{bam_or_cram_index} ~{region} -b -o chrM.extracted.bam"
+	}
 
 	output {
 		File extractedBam = "chrM.extracted.bam"
 
+
 	}
 
 	runtime {
-		docker: "quay.io/jlanej/mosdepth-docker:latest"
-		#docker: "quay.io/ldcabansay/samtools:latest"
+		docker: "quay.io/jlanej/mosdepth-docker:sha256:6c31a803fad8ed5873cbd856b057039ced23768cf260d7317c57b0f7a9663e11"
 		memory: mem_gb + "GB"
 		disks: "local-disk " + disk_size + " HDD"
 	}
 
 	meta {
-		author: "hesam"
+		author: "jlanej"
 	}
 }
 
 workflow extractRegionWorkflow {
-	input {
-	File drs_uri_bam
-	File drs_uri_bam_bai
-	File bam_file_name
-	File bed
-	String output_path
-	Int mem_gb
-	}
-	call ExtractBam { 
+    input {
+        File bam_or_cram_input
+		File bam_or_cram_index
+        String region
+        Int mem_gb
+    }
+	call viewRegion { 
 		input:
-	 drs_uri_bam=drs_uri_bam,
-	 drs_uri_bam_bai=drs_uri_bam_bai,
-	 bam_file_name=bam_file_name,
-	 bed=bed,
-	 output_path=output_path,
-	 mem_gb=mem_gb
+	 bam_or_cram_input=bam_or_cram_input,
+	 bam_or_cram_index=bam_or_cram_index,
+	 region=region,
+	 mem_gb=mem_gb 
 	}
 }
 
-#
+#		
