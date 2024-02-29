@@ -3,7 +3,7 @@ task ExtractBam {
     input {
 		File drs_uri_bam
 		File drs_uri_bam.bai
-    File bam_file_name
+		File bam_file_name
 		File bed
 		Int mem_gb
 		Int addtional_disk_size = 200 
