@@ -4,6 +4,7 @@ task ExtractBam {
 		File drs_uri_bam
 		File drs_uri_bam_bai
 		File bam_file_name
+		String output_path
 		File bed
 		Int mem_gb
 		Int addtional_disk_size = 200 
@@ -12,11 +13,11 @@ task ExtractBam {
 		}
 
 	command {
-		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{bam_file_name}.chrM.extracted.bam"
+		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{output_path}/~{bam_file_name}.chrM.extracted.bam"
 	}
 
 	output {
-		File extractedBam = "~{bam_file_name}.chrM.extracted.bam"
+		File extractedBam = "~{output_path}/~{bam_file_name}.chrM.extracted.bam"
 
 	}
 
@@ -37,6 +38,7 @@ workflow extractRegionWorkflow {
 	File drs_uri_bam_bai
 	File bam_file_name
 	File bed
+	output_path
 	Int mem_gb
 	}
 	call ExtractBam { 
@@ -45,6 +47,7 @@ workflow extractRegionWorkflow {
 	 drs_uri_bam_bai=drs_uri_bam_bai,
 	 bam_file_name=bam_file_name,
 	 bed=bed,
+	 output_path=output_path,
 	 mem_gb=mem_gb 
 	}
 }
