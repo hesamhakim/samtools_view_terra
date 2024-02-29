@@ -8,7 +8,7 @@ task ExtractBam {
 		Int mem_gb
 		Int addtional_disk_size = 200 
 		Int machine_mem_size = 15
-		Int disk_size = ceil(size(bam_input, "GB")) + addtional_disk_size
+		Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
 		}
 
 	command {
