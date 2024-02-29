@@ -39,7 +39,7 @@ workflow extractRegionWorkflow {
 	File bed
 	Int mem_gb
 	}
-	call viewBamRegion { 
+	call ExtractBam { 
 		input:
 	 drs_uri_bam=drs_uri_bam,
 	 drs_uri_bam_bai=drs_uri_bam_bai,
