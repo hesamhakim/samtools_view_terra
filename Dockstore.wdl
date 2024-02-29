@@ -17,7 +17,7 @@ task ExtractBam {
 		>>>
 
 	output {
-		File extractedBam = "~{drs_uri_bam}/chrM.extracted.bam"
+		File extractedBam = "chrM.extracted.bam"
 
 	}
 
