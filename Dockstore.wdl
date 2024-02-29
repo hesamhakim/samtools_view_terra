@@ -6,6 +6,8 @@ task ExtractBam {
 		File bam_file_name
 		String output_path
 		File bed
+		String billing_project="Hesam_GTEx_Anvil_billing_proj"
+		String workspace="AnVIL_GTEx_V9_hg38_CHLA All Seq Files"
 		Int mem_gb
 		Int addtional_disk_size = 200 
 		Int machine_mem_size = 15
@@ -13,6 +15,8 @@ task ExtractBam {
 		}
 
 	command {
+		export GOOGLE_PROJECT=${billing_project}
+		export WORKSPACE_NAME=${workspace}
 		samtools view ${drs_uri_bam} -X ${drs_uri_bam_bai} chrM -b -o "chrM.extracted.bam"
 		}
 
@@ -39,6 +43,8 @@ workflow extractRegionWorkflow {
 	File bam_file_name
 	File bed
 	String output_path
+	String billing_project
+	String workspace
 	Int mem_gb
 	}
 	call ExtractBam { 
@@ -48,6 +54,8 @@ workflow extractRegionWorkflow {
 	 bam_file_name=bam_file_name,
 	 bed=bed,
 	 output_path=output_path,
+	 billing_project=billing_project
+	 workspace=workspace
 	 mem_gb=mem_gb 
 	}
 }
