@@ -2,7 +2,7 @@ version 1.0
 task ExtractBam {
     input {
 		File drs_uri_bam
-		File drs_uri_bam.bai
+		File drs_uri_bam_bai
 		File bam_file_name
 		File bed
 		Int mem_gb
@@ -12,7 +12,7 @@ task ExtractBam {
 		}
 
 	command {
-		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam.bai} chrM -b -o ~{bam_file_name}.chrM.extracted.bam"
+		bash -c "echo ~{bam_file_name}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bam_bai} chrM -b -o ~{bam_file_name}.chrM.extracted.bam"
 	}
 
 	output {
@@ -34,7 +34,7 @@ task ExtractBam {
 workflow extractRegionWorkflow {
 	input {
 	File drs_uri_bam
-	File drs_uri_bam.bai
+	File drs_uri_bam_bai
 	File bam_file_name
 	File bed
 	Int mem_gb
@@ -42,7 +42,7 @@ workflow extractRegionWorkflow {
 	call viewBamRegion { 
 		input:
 	 drs_uri_bam=drs_uri_bam,
-	 drs_uri_bam.bai=drs_uri_bam.bai,
+	 drs_uri_bam_bai=drs_uri_bam_bai,
 	 bam_file_name=bam_file_name,
 	 bed=bed,
 	 mem_gb=mem_gb 
