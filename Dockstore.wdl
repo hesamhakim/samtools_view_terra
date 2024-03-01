@@ -18,7 +18,7 @@ task viewRegion {
 	}
 
 	output {
-		File extractedBam
+		File extractedBam = "~{bam_file_name}_chrM.extracted.bam"
 	}
 
 	runtime {
@@ -47,6 +47,8 @@ workflow extractRegionWorkflow {
 	 bam_file_name=bam_file_name,
 	 region=region,
 	 mem_gb=mem_gb 
+	 output:
+	 extractedBam=extractedBam
 	}
 }
 
