@@ -15,13 +15,12 @@ task viewRegion {
 	command {
 		#bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{drs_uri_bam}_chrM.extracted.bam"
 		bash -c "echo ~{drs_uri_bam}"
-		bash -c "out_put_name= ~{drs_uri_bam}_chrm.bam"
-		bash -c "echo ~{out_put_name}"
+		bash -c "echo ~{drs_uri_bam}_chrm.bam"
 		
 	}
 
 	output {
-		String extractedBam_name="~{out_put_name}"
+		String extractedBam_name="~{drs_uri_bam}_chrm.bam"
 	}
 
 	runtime {
