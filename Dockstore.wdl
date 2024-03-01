@@ -21,7 +21,7 @@ task viewRegion {
 	}
 
 	output {
-		String extractedBam_name = $out_put_name
+		String extractedBam_name=$out_put_name
 	}
 
 	runtime {
