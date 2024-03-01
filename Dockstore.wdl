@@ -13,14 +13,11 @@ task viewRegion {
     }
 
 	command {
-		#bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{drs_uri_bam}_chrM.extracted.bam"
-		bash -c "echo ~{drs_uri_bam}"
-		bash -c "echo ~{drs_uri_bam}_chrm.bam"
-		
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o mitobam/~{drs_uri_bam}"
 	}
 
 	output {
-		String extractedBam_name="~{drs_uri_bam}_chrm.bam"
+		File extractedBam = "mitobam/~{drs_uri_bam}"
 	}
 
 	runtime {
@@ -48,9 +45,9 @@ workflow extractRegionWorkflow {
 	 region=region,
 	 mem_gb=mem_gb 
 	}
-	#output {
-		#File output_bam=viewRegion.extractedBam
-		#}
+	output {
+		File output_bam=viewRegion.extractedBam
+	}
 }
 
 #		
