@@ -8,7 +8,8 @@ task viewRegion {
         Int mem_gb
         Int addtional_disk_size = 100 
         Int machine_mem_size = 15
-   		Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
+        Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
+ 
 
     }
 
@@ -17,7 +18,7 @@ task viewRegion {
 	}
 
 	output {
-		File extractedBam = "~{bam_file_name}_chrM.extracted.bam"
+		File extractedBam
 
 
 	}
