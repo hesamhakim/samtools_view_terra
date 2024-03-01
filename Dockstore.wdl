@@ -47,8 +47,9 @@ workflow extractRegionWorkflow {
 	 bam_file_name=bam_file_name,
 	 region=region,
 	 mem_gb=mem_gb 
-	 output:
-	 extractedBam=extractedBam
+	}
+	output{ 
+	extractedBam=extractedBam
 	}
 }
 
