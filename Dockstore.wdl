@@ -8,17 +8,17 @@ task viewRegion {
         Int mem_gb
         Int addtional_disk_size = 100 
         Int machine_mem_size = 15
-        Int disk_size = ceil(size(drs_uri_bam, "GB")) + addtional_disk_size
+        Int disk_size 
  
 
     }
 
 	command {
-		bash -c "echo ~{drs_uri_bam}; samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{bam_file_name}_chrM.extracted.bam"
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o chrM.extracted.bam"
 	}
 
 	output {
-		File extractedBam = "~{bam_file_name}_chrM.extracted.bam"
+		File extractedBam = "chrM.extracted.bam"
 	}
 
 	runtime {
