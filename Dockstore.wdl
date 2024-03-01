@@ -48,8 +48,8 @@ workflow extractRegionWorkflow {
 	 region=region,
 	 mem_gb=mem_gb 
 	}
-	output{ 
-	extractedBam=extractedBam
+	output {
+		File output_bam=viewRegion.extractedBam
 	}
 }
 
