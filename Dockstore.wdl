@@ -18,7 +18,7 @@ task viewRegion {
 	}
 
 	output {
-		File extractedBam = "~{drs_uri_bam}"
+		File extractedBam = "~{file_bam_name}_chrm.bam"
 	}
 
 	runtime {
