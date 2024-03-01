@@ -13,11 +13,11 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o mitobam/~{drs_uri_bam}"
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{drs_uri_bam}"
 	}
 
 	output {
-		File extractedBam = "mitobam/~{drs_uri_bam}"
+		File extractedBam = "~{drs_uri_bam}"
 	}
 
 	runtime {
