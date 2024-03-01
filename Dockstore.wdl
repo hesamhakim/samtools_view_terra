@@ -3,6 +3,7 @@ task viewRegion {
     input {
         File drs_uri_bam
         File drs_uri_bai
+		String file_bam_name
         String region
         Int mem_gb
         Int addtional_disk_size = 100 
@@ -13,7 +14,7 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{drs_uri_bam}"
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{file_bam_name}_chrm.bam"
 	}
 
 	output {
@@ -35,6 +36,7 @@ workflow extractRegionWorkflow {
     input {
         File drs_uri_bam
 		File drs_uri_bai
+		String file_bam_name
         String region
         Int mem_gb
     }
@@ -42,6 +44,7 @@ workflow extractRegionWorkflow {
 		input:
 	 drs_uri_bam=drs_uri_bam,
 	 drs_uri_bai=drs_uri_bai,
+	 file_bam_name=file_bam_name,
 	 region=region,
 	 mem_gb=mem_gb 
 	}
