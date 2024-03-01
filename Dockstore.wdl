@@ -19,8 +19,6 @@ task viewRegion {
 
 	output {
 		File extractedBam
-
-
 	}
 
 	runtime {
