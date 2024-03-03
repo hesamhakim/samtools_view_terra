@@ -47,7 +47,7 @@ workflow extractRegionWorkflow {
 	 drs_uri_bam=drs_uri_bam,
 	 drs_uri_bai=drs_uri_bai,
 	 file_bam_name=file_bam_name,
-	 File mitoBed=File mitoBed,
+	 mitoBed=mitoBed,
 	 ##region=region,
 	 mem_gb=mem_gb 
 	}
