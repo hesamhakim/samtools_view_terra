@@ -15,7 +15,7 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo samtools; samtools view ~{drs_uri_bam} --target-file ~{mitoBed} -b -o ~{file_bam_name}_chrM.bam"
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} -L ~{mitoBed} -b -o ~{file_bam_name}_chrM.bam"
 	}
 
 	output {
