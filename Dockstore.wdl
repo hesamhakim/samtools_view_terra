@@ -3,8 +3,9 @@ task viewRegion {
     input {
         File drs_uri_bam
         File drs_uri_bai
-		String file_bam_name
-        String region
+        File mitoBed
+        String file_bam_name
+        ##String region
         Int mem_gb
         Int addtional_disk_size = 100 
         Int machine_mem_size = 15
@@ -14,11 +15,11 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo samtools; samtools view ~{drs_uri_bam} -X ~{drs_uri_bai} chrM -b -o ~{file_bam_name}_chrm.bam"
+		bash -c "echo samtools; samtools view ~{drs_uri_bam} --target-file ~{mitoBed} -b -o ~{file_bam_name}_chrM.bam"
 	}
 
 	output {
-		File extractedBam = "~{file_bam_name}_chrm.bam"
+		File extractedBam = "~{file_bam_name}_chrM.bam"
 	}
 
 	runtime {
@@ -35,9 +36,10 @@ task viewRegion {
 workflow extractRegionWorkflow {
     input {
         File drs_uri_bam
-		File drs_uri_bai
-		String file_bam_name
-        String region
+        File drs_uri_bai
+        File mitoBed
+        String file_bam_name
+        ##String region
         Int mem_gb
     }
 	call viewRegion { 
@@ -45,7 +47,8 @@ workflow extractRegionWorkflow {
 	 drs_uri_bam=drs_uri_bam,
 	 drs_uri_bai=drs_uri_bai,
 	 file_bam_name=file_bam_name,
-	 region=region,
+	 File mitoBed=File mitoBed,
+	 ##region=region,
 	 mem_gb=mem_gb 
 	}
 	output {
