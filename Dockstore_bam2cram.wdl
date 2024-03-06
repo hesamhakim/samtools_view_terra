@@ -1,5 +1,5 @@
 version 1.0
-task viewRegion {
+task viewCram {
     input {
         File drs_uri_bam
         File drs_uri_bai
@@ -29,11 +29,11 @@ task viewRegion {
 	}
 
 	meta {
-		author: "jlanej"
+		author: "hesamhakim"
 	}
 }
 
-workflow extractRegionWorkflow {
+workflow viewCramWorkflow {
     input {
         File drs_uri_bam
         File drs_uri_bai
@@ -42,7 +42,7 @@ workflow extractRegionWorkflow {
         ##String region
         Int mem_gb
     }
-	call viewRegion { 
+	call viewCram { 
 		input:
 	 drs_uri_bam=drs_uri_bam,
 	 drs_uri_bai=drs_uri_bai,
@@ -52,7 +52,7 @@ workflow extractRegionWorkflow {
 	 mem_gb=mem_gb 
 	}
 	output {
-		File converted_cram=viewRegion.convertedCram
+		File converted_cram=viewCram.convertedCram
 	}
 }
 
