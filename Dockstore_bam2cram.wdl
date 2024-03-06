@@ -15,7 +15,7 @@ task viewCram {
     }
 
 	command {
-		bash -c "echo samtools; samtools view -X ~{drs_uri_bai} -T reference -C -o ~{drs_uri_bam} ~{file_bam_name}.cram"
+		bash -c "echo samtools; samtools view -X ~{drs_uri_bai} -T ~{reference} -C -o ~{file_bam_name}.cram ~{drs_uri_bam}"
 	}
 
 	output {
