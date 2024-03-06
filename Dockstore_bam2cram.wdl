@@ -19,7 +19,7 @@ task viewRegion {
 	}
 
 	output {
-		File extractedBam = "~{file_bam_name}.cram"
+		File convertedCram = "~{file_bam_name}.cram"
 	}
 
 	runtime {
@@ -52,7 +52,7 @@ workflow extractRegionWorkflow {
 	 mem_gb=mem_gb 
 	}
 	output {
-		File output_bam=viewRegion.extractedBam
+		File converted_cram=viewRegion.convertedCram
 	}
 }
 
