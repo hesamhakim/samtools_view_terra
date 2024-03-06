@@ -2,7 +2,7 @@ version 1.0
 task viewRegion {
     input {
         File drs_uri_bam
-        File drs_uri_bam.bai
+        File drs_uri_bai
         File reference
         String file_bam_name
         ##String region
@@ -15,7 +15,7 @@ task viewRegion {
     }
 
 	command {
-		bash -c "echo samtools; samtools view -X ~{drs_uri_bam.bai} -T reference -C -o ~{drs_uri_bam} ~{file_bam_name}.cram"
+		bash -c "echo samtools; samtools view -X ~{drs_uri_bai} -T reference -C -o ~{drs_uri_bam} ~{file_bam_name}.cram"
 	}
 
 	output {
@@ -36,7 +36,7 @@ task viewRegion {
 workflow extractRegionWorkflow {
     input {
         File drs_uri_bam
-        File drs_uri_bam.bai
+        File drs_uri_bai
         File reference
         String file_bam_name
         ##String region
@@ -45,7 +45,7 @@ workflow extractRegionWorkflow {
 	call viewRegion { 
 		input:
 	 drs_uri_bam=drs_uri_bam,
-	 drs_uri_bam.bai=drs_uri_bam.bai,
+	 drs_uri_bai=drs_uri_bai,
 	 file_bam_name=file_bam_name,
 	 reference=reference,
 	 ##region=region,
