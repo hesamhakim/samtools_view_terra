@@ -7,6 +7,4 @@ workflows:
      name: samtools-view
    - subclass: WDL
      primaryDescriptorPath: /Dockstore_bam2cram.wdl
-     testParameterFiles:
-         - /Dockstore.json
      name: samtools-bam2cram
