@@ -4,7 +4,6 @@ task viewCram {
         File drs_uri_bam
         File drs_uri_bai
         File reference
-        File reference_idx
         String file_bam_name
         ##String region
         Int mem_gb
@@ -16,7 +15,7 @@ task viewCram {
     }
 
 	command {
-		bash -c "echo samtools; samtools view -T ~{reference}##idx##~{reference_idx} -C -o ~{file_bam_name}.cram -X ~{drs_uri_bam} ~{drs_uri_bai}"
+		bash -c "echo samtools; samtools view -T ~{reference} -C -o ~{file_bam_name}.cram -X ~{drs_uri_bam} ~{drs_uri_bai}"
 	}
 
 	output {
@@ -39,7 +38,6 @@ workflow viewCramWorkflow {
         File drs_uri_bam
         File drs_uri_bai
         File reference
-		File reference_idx
         String file_bam_name
         ##String region
         Int mem_gb
@@ -50,7 +48,6 @@ workflow viewCramWorkflow {
 	 drs_uri_bai=drs_uri_bai,
 	 file_bam_name=file_bam_name,
 	 reference=reference,
-	 reference_idx=reference_idx,
 	 ##region=region,
 	 mem_gb=mem_gb 
 	}
